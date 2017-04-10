@@ -10,7 +10,6 @@
 #include <pthread.h>
 #include <time.h>
 #include <iostream>
-#include <semaphore.h>
 #include "buffer.h"
 
 
