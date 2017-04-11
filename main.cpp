@@ -27,7 +27,7 @@ int insert_item(buffer_item item);
 int remove_item(buffer_item *item);
 void *consumer (void *param); // TODO
 void *producer(void *param); // TODO
-void print_buffer; // TODO
+void print_buffer(); // TODO
 int count; // Number of contents inside the buffer
 
    /* Task List

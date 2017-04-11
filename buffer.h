@@ -1,5 +1,5 @@
 /* 
- * File:   main.cpp
+ * File:   buffer.h
  * Author: Jan Ocampo and Thomas Griffin
  * Class: CS433 Program 3
  * Title: Producer and Consumer Problem
