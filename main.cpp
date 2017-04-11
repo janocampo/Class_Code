@@ -131,6 +131,7 @@ int remove_item(buffer_item *item) {
     return success;
 }
 
+// Comment
 void *producer(void *param) {
     buffer_item item;
     while(1) {
@@ -146,6 +147,7 @@ void *producer(void *param) {
     }
 }
 
+// Comment
 void *consumer(void * param) {
     buffer_item item;
     while(1) {
