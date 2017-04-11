@@ -9,9 +9,10 @@
 #include <cstdlib>
 #include <pthread.h>
 #include <time.h>
+#include <unistd.h>
 #include <iostream>
-#include <semaphore.h>
 #include "buffer.h"
+#include "windows.h"
 
 
 using namespace std;
@@ -38,14 +39,13 @@ int count; // Number of contents inside the buffer
      * 6. exit
      */
     
-
 /*
  * 
  */
 int main()  {
     
     // Start 
-    int i, num_prod, num_cons;
+    int i, num_prod, num_cons,time;
     rand(time(NULL)); // Pull random time
     pthread_mutex_init(&mutex, NULL); // Pulls the mutex global var and initialize
     
@@ -71,7 +71,7 @@ int main()  {
         pthread_create(&consumers[i], NULL, consumer, NULL);
     };
     
-    // Sleep ?
+    sleep(time);
     return 0;
 }
 
@@ -129,4 +129,32 @@ int remove_item(buffer_item *item) {
     sem_post(&empty); // Semaphore is empty
     
     return success;
+}
+
+void *producer(void *param) {
+    buffer_item item;
+    while(1) {
+        sleep(rand() % 5 + 1); // Progrram sleeps for a random amt of time
+        
+        item = rand();
+        if(insert_item(item)) {
+            cout << "ERROR ERROR ERROR ERRA" << endl;
+            exit(0);
+        }
+        else 
+            cout << "Producer has produced " << item << endl;
+    }
+}
+
+void *consumer(void * param) {
+    buffer_item item;
+    while(1) {
+        sleep(rand() % 5 + 1); // Progrram sleeps for a random amt of time
+        
+        if(remove_item(&item)) {
+            cout << "Error with consumption" << endl;
+        }
+        else 
+            cout << "Consumer consumed " << item << endl;
+    }
 }
