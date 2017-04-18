@@ -10,6 +10,7 @@
 #include <pthread.h>
 #include <time.h>
 #include <unistd.h>
+#include <semaphore.h>
 #include <iostream>
 #include "buffer.h"
 #include "windows.h"
@@ -46,7 +47,7 @@ int main()  {
     
     // Start 
     int i, num_prod, num_cons,time;
-    rand(time(NULL)); // Pull random time
+    srand(time(NULL)); // Pull random time
     pthread_mutex_init(&mutex, NULL); // Pulls the mutex global var and initialize
     
     // Gets Command Line arguments
@@ -93,7 +94,7 @@ int insert_item(buffer_item item) {
         cout << item << " was successfully placed into the Buffer" << endl;
     }
     else {
-        success = 1; // Failure to insert womp womp
+        success = -1; // Failure to insert womp womp
         cout << item << " failed to be placed into the Buffer" << endl;
     }
     
